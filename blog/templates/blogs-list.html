@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs List</title>
+</head>
+<body>
+    <h1>Blogs List</h1>
+    {% for blog in blogs %}
+        <a href="{% url 'blog:detail' blog.id %}">{{ blog.title }}</a>
+    {% endfor %}
+</body>
+</html>
