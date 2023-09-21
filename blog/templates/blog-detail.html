@@ -11,5 +11,8 @@
         <h3>{{ blog.title }}</h3>
         <img src="{{ blog.image.url }}" alt="" style="width:300px" />
         <p>{{ blog.body }}</p>
+        <hr>
+        <a href="{% url 'blog:update' blog.pk %}">Update</a>
+        <a href="{% url 'blog:delete' blog.pk %}">Delete</a>
 </body>
 </html>
