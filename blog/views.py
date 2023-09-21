@@ -48,7 +48,6 @@ class BlogDetailView(View):
     def post(self, request, pk):
         blog = Blog.published.get(id=pk)
         form = CommentForm(request.POST)
-        print(pk)
         if request.user.is_authenticated:
             if form.is_valid():
                 comment = form.save(commit=False)
