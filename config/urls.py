@@ -8,7 +8,8 @@ from config.views import Home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blogs/', include('blog.urls')),
-    path('', Home.as_view(), name='home')
+    path('', Home.as_view(), name='home'),
+    path('auth/', include('accounts.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
