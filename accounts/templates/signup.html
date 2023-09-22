@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <form method="post">{% csrf_token %}
-        {% for i in form %}
-            <label for="phone" class="label">{{i.label}}</label>
-            {{i}}
-        {% endfor %}
+        {{ form.as_p }}
         <button type="submit" class="btn">Kirish</button>
     </form>
 {% endblock content %}
