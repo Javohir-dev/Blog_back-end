@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 from blog.models import Blog
 from django.urls import reverse_lazy
@@ -8,7 +9,8 @@ from django.views.generic import (
     DeleteView,
     DetailView,
 )
-
+from .forms import CommentForm
+from django.contrib.auth.models import AnonymousUser
 
 class BlogsList(View):
     def get(self, request):
@@ -30,11 +32,36 @@ class BlogsList(View):
 #         return render(request, "blog-detail.html", context)
 
 
-class BlogDetailView(DetailView):
-    model = Blog
-    template_name = "blog-detail.html"
+class BlogDetailView(View):
+    def get(self, request, pk):
+        blog = Blog.published.get(id=pk)
+        comments = blog.comment.all()
+        form = CommentForm()
+        context = {
+            'form':form,
+            'blog':blog,
+            'comments': comments
+        }
+        return render(request, "blog-detail.html", context)
 
-
+    
+    def post(self, request, pk):
+        blog = Blog.published.get(id=pk)
+        form = CommentForm(request.POST)
+        if request.user.is_authenticated:
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.author = request.user
+                comment.post = blog
+                comment.save()
+                url = reverse('blog:detail', kwargs={'pk':pk})
+                return redirect(url)
+            else:
+                return redirect('blog:detail', kwargs={"pk":pk})
+        else:    
+            url = reverse('account:login')
+            return redirect(url)
+        
 class BlogUpdateView(UpdateView):
     model = Blog
     fields = ["title", "body", "image", "status"]
@@ -53,3 +80,4 @@ class BlogCreateView(CreateView):
     template_name = "crud/blog-create.html"
     fields = ["title", "body", "image", "status"]
     success_url = reverse_lazy("blog:blogs")
+

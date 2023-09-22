@@ -14,5 +14,18 @@
         <hr>
         <a href="{% url 'blog:update' blog.pk %}">Update</a>
         <a href="{% url 'blog:delete' blog.pk %}">Delete</a>
+
+    <h1>Commentlar</h1>
+    {% for com in comments %}
+        <h3>Avtor: {{com.author}}</h3>
+        <h3>Izoh: {{com.comment}}</h3>
+        <h4>{{com.created_at}}</h4>
+    {% endfor %}
+
+    <h2>Comment yozish</h2>
+        <form method="post">{% csrf_token %}
+            <input type="text" name="comment">
+            <button type="submit">Yuborish</button>
+        </form>
 </body>
 </html>
