@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "accounts",
     "blog",
     "projects.apps.ProjectsConfig",
+    "ckeditor",
 ]
 
 MIDDLEWARE = [

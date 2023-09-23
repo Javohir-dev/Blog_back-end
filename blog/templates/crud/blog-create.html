@@ -8,6 +8,7 @@
 <body>
     <form method="post" enctype="multipart/form-data" role="form">{% csrf_token %}
         <div>
+            {{ form.media }}
             {{ form.as_p }}
             <button type="submit">Add</button>
         </div>

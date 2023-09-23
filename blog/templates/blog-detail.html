@@ -10,7 +10,7 @@
     <h1>Blog detail</h1>
         <h3>{{ blog.title }}</h3>
         <img src="{{ blog.image.url }}" alt="" style="width:300px" />
-        <p>{{ blog.body }}</p>
+        <p>{{ blog.body | safe }}</p>
         <hr>
         <a href="{% url 'blog:update' blog.pk %}">Update</a>
         <a href="{% url 'blog:delete' blog.pk %}">Delete</a>
@@ -18,9 +18,9 @@
     <h1>Commentlar</h1>
     {% for com in comments %}
     <div class="">
-        <h3>Avtor: {{com.author}}</h3>
-        <p>{{com.comment}}</p>
-        <span>{{com.created_at}}</span>
+        <h3>Avtor: {{ com.author }}</h3>
+        <p>{{ com.comment }}</p>
+        <span>{{ com.created_at }}</span>
     </div>
     {% endfor %}
 
