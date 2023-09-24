@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+</head>
+<body>
+<h1>Here is projects!</h1>
+<hr>
+{% for post in posts %}
+    <ol>
+        <h3>{{ post.title }}</h3>
+        <ul>
+            <li>{{ post.body }}</li>
+            <li>{{ post.created_at }}</li>
+        </ul>
+    </ol>
+{% endfor %}
+</body>
+</html>

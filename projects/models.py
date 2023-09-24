@@ -10,6 +10,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     github = models.URLField(max_length=150)
     domain = models.URLField(max_length=50)
+
     ordering = ['-created_date']
 
     def __str__(self):

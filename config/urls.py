@@ -10,6 +10,8 @@ urlpatterns = [
     path("", Home.as_view(), name="home"),
     path("blogs/", include("blog.urls")),
     path("auth/", include("accounts.urls")),
+    path("projects/", include('projects.urls')),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
