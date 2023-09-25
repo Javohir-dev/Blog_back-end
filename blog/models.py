@@ -46,3 +46,11 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.author.username
+
+
+class Ads(models.Model):
+    title = models.CharField(max_length=200)
+    body = RichTextField(blank=True, null=True)
+
+    def __str__(self) -> str:
+        return self.title

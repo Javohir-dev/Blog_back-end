@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs List</title>
 </head>
-<body>
+<body style="font-family: sans-serif">
     <h1>Blogs List <a href="{% url 'blog:create' %}">Create</a></h1>
     {% for blog in blogs %}
         <a href="{% url 'blog:detail' blog.id %}">{{ blog.title }}</a><hr/>
+    {% endfor %}
+    <br><br><br><br><br>
+    {% for item in ads %}
+        {% if forloop.last %}
+            <h2>{{ item.title }}</h2>
+            <div style="font-weight: 600; font-family: sans-serif">{{ item.body | safe }}</div>
+        {% endif %}
     {% endfor %}
 </body>
 </html>
