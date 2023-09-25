@@ -27,16 +27,6 @@ class BlogsList(View):
         return render(request, "blogs-list.html", context)
 
 
-# class BlogDetail(View):
-#     def get(self, request, pk):
-#         blog = Blog.published.get(id=pk)
-#         context = {
-#             "blog": blog,
-#         }
-
-#         return render(request, "blog-detail.html", context)
-
-
 class BlogDetailView(View):
     def get(self, request, pk):
         blog = Blog.published.get(id=pk)

@@ -2,13 +2,15 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.views import View
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserLogInForm
 from django.contrib.auth.models import User
 
 
 class LoginView(View):
     def get(self, request):
-        return render(request, "login.html")
+        form = CustomUserLogInForm()
+
+        return render(request, "login.html", {"form": form})
 
     def post(self, request):
         username = request.POST.get("username")
