@@ -1,15 +1,17 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    body = models.TextField()
+    body = RichTextField()
     image = models.ImageField(upload_to='projects/post_images/', default='projects/default.png')
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     github = models.URLField(max_length=150)
     domain = models.URLField(max_length=50)
+
     ordering = ['-created_date']
 
     def __str__(self):
